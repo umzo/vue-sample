@@ -1,0 +1,21 @@
+# ベースイメージの指定
+FROM node:18
+
+# 作業ディレクトリの設定
+WORKDIR /app
+
+# 依存関係ファイルをコピー
+# COPY package.json yarn.lock ./
+COPY package.json ./
+
+# 依存関係のインストール
+RUN npm install
+
+# # アプリケーションのソースコードをコピー
+# COPY . .
+
+# Storybookのポートを公開
+EXPOSE 6006
+
+# Storybookを起動
+CMD ["npm", "run", "storybook"]
